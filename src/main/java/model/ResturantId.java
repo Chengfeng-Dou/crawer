@@ -1,0 +1,14 @@
+package model;
+
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import java.io.Serializable;
+
+@Embeddable
+public class ResturantId implements Serializable {
+    @Column
+    public String restaurantId;
+    @Column
+    public String siteId;
+}

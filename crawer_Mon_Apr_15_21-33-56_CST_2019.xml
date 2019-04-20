@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="crawer" default="all">
+  
+  
+  <property file="crawer.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.klib"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.zip"/>
+    <include name="*.ane"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/charsets.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/cldrdata.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/dnsns.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/icedtea-sound.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/jaccess.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/java-atk-wrapper.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/localedata.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/nashorn.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/sunec.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/sunjce_provider.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/sunpkcs11.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/zipfs.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/jce.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/jsse.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/management-agent.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/resources.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.maven:_antlr:antlr:2.7.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/antlr/antlr/2.7.6/antlr-2.7.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.alibaba:fastjson:1.2.28.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/alibaba/fastjson/1.2.28/fastjson-1.2.28.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.jayway.jsonpath:json-path:2.4.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/jayway/jsonpath/json-path/2.4.0/json-path-2.4.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-codec:commons-codec:1.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.9/commons-codec-1.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-collections:commons-collections:3.2.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-io:commons-io:1.3.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-io/commons-io/1.3.2/commons-io-1.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-logging:commons-logging:1.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_dom4j:dom4j:1.6.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.transaction:jta:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/transaction/jta/1.1/jta-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_log4j:log4j:1.2.17.classpath">
+    <pathelement location="${path.variable.maven_repository}/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>
+  </path>
+  
+  <path id="library.maven:_mysql:mysql-connector-java:5.1.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.minidev:accessors-smart:1.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/minidev/accessors-smart/1.2/accessors-smart-1.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.minidev:json-smart:2.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/minidev/json-smart/2.3/json-smart-2.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.commons:commons-lang3:3.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.commons:commons-pool2:2.4.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.httpcomponents:httpclient:4.5.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/httpcomponents/httpclient/4.5.2/httpclient-4.5.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.httpcomponents:httpcore:4.4.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/httpcomponents/httpcore/4.4.4/httpcore-4.4.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.assertj:assertj-core:1.5.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/assertj/assertj-core/1.5.0/assertj-core-1.5.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-commons-annotations:3.2.0.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-commons-annotations/3.2.0.Final/hibernate-commons-annotations-3.2.0.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-core:3.6.10.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-core/3.6.10.Final/hibernate-core-3.6.10.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.javassist:javassist:3.13.0-ga.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/javassist/javassist/3.13.0-GA/javassist-3.13.0-GA.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jsoup:jsoup:1.10.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jsoup/jsoup/1.10.2/jsoup-1.10.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.ow2.asm:asm:5.0.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/ow2/asm/asm/5.0.4/asm-5.0.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:slf4j-api:1.7.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:slf4j-log4j12:1.7.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/slf4j/slf4j-log4j12/1.7.6/slf4j-log4j12-1.7.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_redis.clients:jedis:2.9.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/redis/clients/jedis/2.9.0/jedis-2.9.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_us.codecraft:webmagic-core:0.7.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/us/codecraft/webmagic-core/0.7.3/webmagic-core-0.7.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_us.codecraft:webmagic-extension:0.7.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/us/codecraft/webmagic-extension/0.7.3/webmagic-extension-0.7.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_us.codecraft:xsoup:0.3.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/us/codecraft/xsoup/0.3.1/xsoup-0.3.1.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <fileset dir="${javac2.home}">
+      <include name="javac2.jar"/>
+      <include name="jdom.jar"/>
+      <include name="asm-all*.jar"/>
+      <include name="forms-*.jar"/>
+    </fileset>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_crawer.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.crawer, clean.artifact.crawer:jar" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.crawer" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.crawer:jar" value="${basedir}/out/artifacts/crawer_jar"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.crawer.jar" value="${artifacts.temp.dir}/crawer.jar"/>
+  </target>
+  
+  <target name="clean.artifact.crawer:jar" description="clean crawer:jar artifact output">
+    <delete dir="${artifact.output.crawer:jar}"/>
+  </target>
+  
+  <target name="artifact.crawer:jar" depends="init.artifacts, compile.module.crawer" description="Build &#39;crawer:jar&#39; artifact">
+    <mkdir dir="${artifact.output.crawer:jar}"/>
+    <jar destfile="${temp.jar.path.crawer.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${crawer.output.dir}"/>
+    </jar>
+    <copy file="${temp.jar.path.crawer.jar}" tofile="${artifact.output.crawer:jar}/crawer.jar"/>
+    <copy file="${path.variable.maven_repository}/org/assertj/assertj-core/1.5.0/assertj-core-1.5.0.jar" tofile="${artifact.output.crawer:jar}/assertj-core-1.5.0.jar"/>
+    <copy file="${path.variable.maven_repository}/javax/transaction/jta/1.1/jta-1.1.jar" tofile="${artifact.output.crawer:jar}/jta-1.1.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-codec/commons-codec/1.9/commons-codec-1.9.jar" tofile="${artifact.output.crawer:jar}/commons-codec-1.9.jar"/>
+    <copy file="${path.variable.maven_repository}/org/slf4j/slf4j-log4j12/1.7.6/slf4j-log4j12-1.7.6.jar" tofile="${artifact.output.crawer:jar}/slf4j-log4j12-1.7.6.jar"/>
+    <copy file="${path.variable.maven_repository}/us/codecraft/xsoup/0.3.1/xsoup-0.3.1.jar" tofile="${artifact.output.crawer:jar}/xsoup-0.3.1.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-io/commons-io/1.3.2/commons-io-1.3.2.jar" tofile="${artifact.output.crawer:jar}/commons-io-1.3.2.jar"/>
+    <copy file="${path.variable.maven_repository}/org/javassist/javassist/3.13.0-GA/javassist-3.13.0-GA.jar" tofile="${artifact.output.crawer:jar}/javassist-3.13.0-GA.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/httpcomponents/httpclient/4.5.2/httpclient-4.5.2.jar" tofile="${artifact.output.crawer:jar}/httpclient-4.5.2.jar"/>
+    <copy file="${path.variable.maven_repository}/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar" tofile="${artifact.output.crawer:jar}/dom4j-1.6.1.jar"/>
+    <copy file="${path.variable.maven_repository}/org/ow2/asm/asm/5.0.4/asm-5.0.4.jar" tofile="${artifact.output.crawer:jar}/asm-5.0.4.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jsoup/jsoup/1.10.2/jsoup-1.10.2.jar" tofile="${artifact.output.crawer:jar}/jsoup-1.10.2.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-commons-annotations/3.2.0.Final/hibernate-commons-annotations-3.2.0.Final.jar" tofile="${artifact.output.crawer:jar}/hibernate-commons-annotations-3.2.0.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-core/3.6.10.Final/hibernate-core-3.6.10.Final.jar" tofile="${artifact.output.crawer:jar}/hibernate-core-3.6.10.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/net/minidev/accessors-smart/1.2/accessors-smart-1.2.jar" tofile="${artifact.output.crawer:jar}/accessors-smart-1.2.jar"/>
+    <copy file="${path.variable.maven_repository}/net/minidev/json-smart/2.3/json-smart-2.3.jar" tofile="${artifact.output.crawer:jar}/json-smart-2.3.jar"/>
+    <copy file="${path.variable.maven_repository}/us/codecraft/webmagic-extension/0.7.3/webmagic-extension-0.7.3.jar" tofile="${artifact.output.crawer:jar}/webmagic-extension-0.7.3.jar"/>
+    <copy file="${path.variable.maven_repository}/com/jayway/jsonpath/json-path/2.4.0/json-path-2.4.0.jar" tofile="${artifact.output.crawer:jar}/json-path-2.4.0.jar"/>
+    <copy file="${path.variable.maven_repository}/com/alibaba/fastjson/1.2.28/fastjson-1.2.28.jar" tofile="${artifact.output.crawer:jar}/fastjson-1.2.28.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar" tofile="${artifact.output.crawer:jar}/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar" tofile="${artifact.output.crawer:jar}/commons-lang3-3.1.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" tofile="${artifact.output.crawer:jar}/commons-logging-1.2.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2.jar" tofile="${artifact.output.crawer:jar}/commons-pool2-2.4.2.jar"/>
+    <copy file="${path.variable.maven_repository}/antlr/antlr/2.7.6/antlr-2.7.6.jar" tofile="${artifact.output.crawer:jar}/antlr-2.7.6.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar" tofile="${artifact.output.crawer:jar}/commons-collections-3.2.2.jar"/>
+    <copy file="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar" tofile="${artifact.output.crawer:jar}/slf4j-api-1.7.6.jar"/>
+    <copy file="${path.variable.maven_repository}/redis/clients/jedis/2.9.0/jedis-2.9.0.jar" tofile="${artifact.output.crawer:jar}/jedis-2.9.0.jar"/>
+    <copy file="${path.variable.maven_repository}/log4j/log4j/1.2.17/log4j-1.2.17.jar" tofile="${artifact.output.crawer:jar}/log4j-1.2.17.jar"/>
+    <copy file="${path.variable.maven_repository}/us/codecraft/webmagic-core/0.7.3/webmagic-core-0.7.3.jar" tofile="${artifact.output.crawer:jar}/webmagic-core-0.7.3.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/httpcomponents/httpcore/4.4.4/httpcore-4.4.4.jar" tofile="${artifact.output.crawer:jar}/httpcore-4.4.4.jar"/>
+    <copy file="${path.variable.maven_repository}/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar" tofile="${artifact.output.crawer:jar}/mysql-connector-java-5.1.6.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.crawer:jar" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
