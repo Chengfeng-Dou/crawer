@@ -29,8 +29,6 @@
 
 
         <!-- format_sql: 打印sql语句前,会将sql语句先格式化  -->
-        <property name="format_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
 
 
         <!-- 数据库方言配置

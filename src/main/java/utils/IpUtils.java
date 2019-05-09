@@ -14,12 +14,7 @@ public class IpUtils {
 
     public static String getNewIp() {
         System.out.println("request Ip");
-//        try {
-//            TimeUnit.MINUTES.sleep(2);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        HttpGet getIp = new HttpGet("http://api.ip.data5u.com/dynamic/get.html?order=e8eee3b10766384f80477b5f983a3481");
+        HttpGet getIp = new HttpGet("http://api.wandoudl.com/api/ip?app_key=3d2b3b9c02034db08a7567ba0ebd1f95&pack=204679&port=4&num=20&xy=1&type=2");
         RequestConfig requestConfig = RequestConfig.custom()
                 .setConnectTimeout(5000)   //设置连接超时时间
                 .setConnectionRequestTimeout(5000) // 设置请求超时时间

@@ -69,7 +69,7 @@ public class DataUtils {
 
                         flush = false;
                     }catch (JDBCException e){
-                        e.printStackTrace();
+                        System.out.println("this batch has been saved!");
                     }
 
                 }

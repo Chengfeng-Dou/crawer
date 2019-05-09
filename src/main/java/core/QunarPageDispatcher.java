@@ -2,6 +2,7 @@ package core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sun.misc.BASE64Encoder;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -12,7 +13,12 @@ import java.util.regex.Pattern;
 
 public class QunarPageDispatcher implements PageProcessor {
     private List<Extractor> extractors = new ArrayList<>();
-    private Site site = Site.me().setRetryTimes(3).setSleepTime(5000);
+    private BASE64Encoder encoder = new BASE64Encoder();
+    private Site site = Site.me()
+            .setRetryTimes(3)
+            .setSleepTime(200)
+            .setCharset("UTF-8")
+            .addHeader("Proxy-Authorization", String.format("Basic %s", encoder.encode("1228853904@qq.com:Dcf141250029".getBytes())));
 
     private static final Logger logger = LoggerFactory.getLogger(QunarPageDispatcher.class);
     private static long accessTime = 0;
@@ -42,7 +48,7 @@ public class QunarPageDispatcher implements PageProcessor {
             "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52",
     };
 
-    public QunarPageDispatcher(){
+    public QunarPageDispatcher() {
 
     }
 
@@ -67,8 +73,8 @@ public class QunarPageDispatcher implements PageProcessor {
     }
 
     private void setUsrAgent() {
-        accessTime ++;
-        if(accessTime % 10 != 0){
+        accessTime++;
+        if (accessTime % 10 != 0) {
             return;
         }
         int random = (int) (Math.random() * (agent.length - 1));

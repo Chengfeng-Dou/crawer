@@ -13,7 +13,6 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         QunarPageDispatcher processor = new QunarPageDispatcher();
-        //processor.addExtractor(new HomePageExtractor());
         processor.addExtractor(new SitesPageExtractor());
         processor.addExtractor(new SitePageExtractor());
 
@@ -34,7 +33,7 @@ public class Main {
                 .addPipeline(new MysqlPipeline())
                 .setDownloader(httpClientDownloader)
                 .setScheduler(new FileCacheQueueScheduler("/home/douchengfeng/urls"))
-                .thread(5).run();
+                .thread(4).run();
 
         DataUtils.close();
     }
